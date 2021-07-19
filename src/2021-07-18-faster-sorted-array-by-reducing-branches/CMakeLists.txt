@@ -19,7 +19,9 @@ target_compile_features(
 )
 target_include_directories(
   2021-07-18-benchmark PRIVATE ${LONGLP_PROJECT_SRC_DIR}
+                               ${LONGLP_PROJECT_EXTERNAL_DIR}
 )
 target_link_libraries(
-  2021-07-18-benchmark PRIVATE benchmark::benchmark 2021-07-18-source
+  2021-07-18-benchmark PRIVATE benchmark::benchmark effolkronium_random
+                               2021-07-18-source
 )

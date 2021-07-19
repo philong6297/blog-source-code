@@ -19,6 +19,7 @@ set(LONGLP_PROJECT_DIR "${PROJECT_SOURCE_DIR}")
 set(LONGLP_PROJECT_SRC_DIR "${LONGLP_PROJECT_DIR}/src")
 set(LONGLP_PROJECT_OUTPUT_DIR "${PROJECT_BINARY_DIR}")
 set(LONGLP_PROJECT_TEST_DIR "${LONGLP_PROJECT_DIR}/test")
+set(LONGLP_PROJECT_EXTERNAL_DIR "${LONGLP_PROJECT_DIR}/external")
 
 # ---- Related tools ----
 add_subdirectory(cmake)
@@ -29,11 +30,11 @@ longlp_desired_compile_options(LONGLP_DESIRED_COMPILE_OPTIONS)
 find_package(fmt REQUIRED)
 find_package(benchmark REQUIRED)
 find_package(doctest REQUIRED)
-find_package(effolkronium_random REQUIRED)
+add_subdirectory(${LONGLP_PROJECT_EXTERNAL_DIR}/effolkronium)
 
 add_subdirectory(${LONGLP_PROJECT_SRC_DIR})
 
 # ---- Test ----
+add_subdirectory(${LONGLP_PROJECT_TEST_DIR})
 include(CTest)
 enable_testing()
-add_subdirectory(${LONGLP_PROJECT_TEST_DIR})

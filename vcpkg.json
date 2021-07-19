@@ -5,7 +5,6 @@
   "dependencies": [
     "benchmark",
     "fmt",
-    "doctest",
-    "effolkronium-random"
+    "doctest"
   ]
 }
