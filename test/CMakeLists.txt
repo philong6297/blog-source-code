@@ -1,3 +1,5 @@
+project(project_test)
+
 add_executable(project_test)
 target_compile_options(project_test PRIVATE ${LONGLP_DESIRED_COMPILE_OPTIONS})
 target_compile_features(project_test PRIVATE ${LONGLP_DESIRED_COMPILE_FEATURES})

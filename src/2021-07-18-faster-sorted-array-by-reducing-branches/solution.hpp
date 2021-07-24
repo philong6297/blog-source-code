@@ -68,19 +68,20 @@ namespace longlp {
                                   ForwardIt2 last2,
                                   ForwardIt3 d_first,
                                   Compare comp = Compare{}) -> ForwardIt3 {
-      while ((first1 != last1) && (first2 != last2)) {
-        const bool comp_is_true = comp(*first1, *first2);
+      bool comp_1_2{};
+      bool comp_2_1{};
+      for (; (first1 != last1) && (first2 != last2); ++d_first) {
+        comp_1_2 = comp(*first1, *first2);
+        comp_2_1 = comp(*first1, *first2);
 
-        *(d_first++) = comp_is_true ? *first1 : *first2;
+        *d_first = comp_1_2 ? *first1 : *first2;
 
-        std::advance(first1, comp_is_true);
-        std::advance(first2, !comp_is_true);
+        std::advance(first1, comp_1_2 || !comp_2_1);
+        std::advance(first2, comp_2_1 || !comp_1_2);
       }
 
-      std::copy(first1, last1, d_first);
-      std::copy(first2, last2, d_first);
-
-      return d_first;
+      d_first = std::copy(first1, last1, d_first);
+      return std::copy(first2, last2, d_first);
     }
   };
 
